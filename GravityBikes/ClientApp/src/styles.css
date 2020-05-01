@@ -1,22 +1,33 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-a {
+a 
+{
   color: #0366d6;
 }
 
-code {
+code 
+{
   color: #e01a76;
 }
 
-.btn-primary {
+.btn-primary 
+{
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
 
-.mat-toolbar.mat-primary {
+.mat-toolbar.mat-primary 
+{
   background: #494a42;
   color: #d6d8ca;
 }
+
+.mat.toolbar
+{
+  position: sticky;
+  top: 50px
+}
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 background-color: #a6a99e ;}

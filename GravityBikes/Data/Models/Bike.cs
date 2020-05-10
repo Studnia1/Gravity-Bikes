@@ -13,10 +13,29 @@ namespace GravityBikes.Data.Models
         public DateTime BikeDateOfHireStart { get; set; }
         public DateTime BikeDateOfHireStop { get; set; }
         public bool BikeIsAvaible { get; set; }
-        public string BikeModel { get; set; } /* < tu dokladniej przemyslec typ */
-        public string BikeSize { get; set; } /* < tu dokladniej przemyslec typ */
-        public string BikeGender { get; set; } /* < tu dokladniej przemyslec typ */
-        public string BikeType { get; set; } /* < tu dokladniej przemyslec typ */
+        public string BikeModel { get; set; }
+        public BikeSizes BikeSize { get; set; }
+        public BikeGenders BikeGender { get; set; }
+        public BikeTypes BikeType { get; set; }
+        public enum BikeSizes
+        {
+            s = 0,
+            m = 1,
+            l = 2,
+            xl = 3
+        }
+        public enum BikeGenders
+        {
+            male = 0,
+            female = 1
+        }
+
+        public enum BikeTypes
+        {
+            downhill, freeride = 0,
+            enduro = 1,
+            forKids = 2
+        }
 
     }
 }

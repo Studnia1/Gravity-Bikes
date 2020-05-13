@@ -1,16 +1,43 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Provide sufficient contrast against white background */
-a {
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+a 
+{
   color: #0366d6;
 }
 
-code {
+code 
+{
   color: #e01a76;
 }
 
-.btn-primary {
+.btn-primary 
+{
   color: #fff;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.mat-toolbar.mat-primary 
+{
+  background: #494a42;
+  color: #d6d8ca;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+  filter: alpha(opacity=80);
+  -moz-opacity: 0.80;
+  -khtml-opacity: 0.8;
+  opacity: 0.8;
+}
+.mat-button{
+  font-size: 30px;
+} 
+
+.mat.toolbar
+{
+  position: sticky;
+  top: 50px
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+background-color: #a6a99e ;}

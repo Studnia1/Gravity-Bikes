@@ -10,10 +10,16 @@ import { AppComponent } from './app.component';
 import {MaterialModule} from './material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './user/login/login.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { DialogComponent, DialogShowComponent } from './dialog/dialog.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    NavbarComponent,
+    DialogComponent,
+    DialogShowComponent
 
   ],
   imports: [
@@ -28,6 +34,7 @@ import { LoginComponent } from './user/login/login.component';
     MatToolbarModule
 
   ],
+  entryComponents: [DialogComponent, DialogShowComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

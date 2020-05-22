@@ -5,7 +5,7 @@ a
 {
   color: #0366d6;
 }
-
+:focus {outline:none !important;}
 code 
 {
   color: #e01a76;

@@ -1,0 +1,15 @@
+mat-toolbar[color="primary"] {
+    top: 0;
+    position: fixed;
+    /* height: var(--default-height); */
+    background: #494a42;
+    color: #d6d8ca;
+  }
+  .spacer {
+    flex: 1 1 auto;
+  }
+  .logo
+  {
+    font-family: 'Rock Salt', cursive;
+    font-size: 35px;
+  }

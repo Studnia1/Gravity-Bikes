@@ -12,6 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './user/login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DialogComponent, DialogShowComponent } from './dialog/dialog.component';
+import { AuthService } from './_services/auth.service';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { RouterService } from './_services/router.service';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,9 @@ import { DialogComponent, DialogShowComponent } from './dialog/dialog.component'
     LoginComponent,
     NavbarComponent,
     DialogComponent,
-    DialogShowComponent
+    DialogShowComponent,
+    RegisterComponent,
+    HomeComponent
 
   ],
   imports: [
@@ -35,7 +41,10 @@ import { DialogComponent, DialogShowComponent } from './dialog/dialog.component'
 
   ],
   entryComponents: [DialogComponent, DialogShowComponent],
-  providers: [],
+  providers: [
+    AuthService,
+    RouterService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

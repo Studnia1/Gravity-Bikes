@@ -1,0 +1,48 @@
+.rider-parallax {
+    background-image: url('/assets/images/img1.jpg');
+    background-size: cover;
+    height: 500px;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .rider-post1{
+    margin-top: 20px;
+    margin: auto;
+  }
+  .centered {
+    position: absolute;
+    top: 240px;
+    right: 180px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 30px;
+  }
+  .post-container {
+    position: relative;
+    text-align: left;
+    color: white;
+  }
+  .slope{
+    width:1000px;
+    height:100px;
+    background:#494a42;
+    text-align:center;
+    font-size:26px;
+    color:#fff;
+    vertical-align:middle;
+    overflow: visible;
+    position: relative;
+  }
+  .slope::after{
+    content: " ";
+    display: block;
+    border-right: 100px solid transparent;
+    border-bottom: 50px solid transparent;	
+    border-left: 100px solid #494a42;
+    border-top: 50px solid #494a42;
+    position:absolute;
+    left:1000px;
+    top:0;
+  }
+  

@@ -1,2 +1,7 @@
-<button mat-button (click)="openDialog()">Login</button>
+<button *ngIf="!loggedIn()" mat-button (click)="openDialog()">Login</button>
 
+<button *ngIf="loggedIn()" mat-button [matMenuTriggerFor]="menu">Menu</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>Edit profile</button>
+  <button mat-menu-item (click)= "logout()">Logout</button>
+</mat-menu>

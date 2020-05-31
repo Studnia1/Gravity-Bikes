@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { RouterService } from '../_services/router.service';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +7,12 @@ import { RouterService } from '../_services/router.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public routerService: RouterService) { }
-
-  registerToogle() {
-    this.routerService.registerToggle();
-  }
+  @Output() showReg = new EventEmitter();
+  constructor() { }
 
   ngOnInit() {
   }
-
+  RegisterToogle() {
+    this.showReg.emit();
+  }
 }

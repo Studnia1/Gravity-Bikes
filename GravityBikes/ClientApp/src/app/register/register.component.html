@@ -12,6 +12,9 @@
         <input type="password" class="form-control" required name="password" [(ngModel)]="model.password" placeholder="Password">
     </div>
 
+    <mat-checkbox [required]>Do you agree to the marketing communication?</mat-checkbox>
+    <mat-checkbox [required]>Do you accept the terms?</mat-checkbox>
+
     <div class="form-group text-center">
         <button class="btn btn-success" type="submit">Register</button>
         <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>

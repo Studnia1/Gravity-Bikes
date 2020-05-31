@@ -1,7 +1,7 @@
+<app-navbar (showReg)="registerToogle()"></app-navbar>
 <div *ngIf="!registerMode">
     <div parallax class="rider-parallax" [config]="{axis: X, speed: -.3}"></div>
     <div class="slope"></div>
-    <button (click)="registerToggle()">Register</button>
     <div class="post-container">
         <img src="/assets/images/img2.png" class="rider-post1" />
         <div class="centered">
@@ -30,7 +30,7 @@
 <div *ngIf="registerMode" class="container">
     <div class="row justify-content-center">
         <div class="col-4">
-            <app-register></app-register>
+            <app-register (hideReg)="registerToogle()"></app-register>
         </div>
     </div>
 </div>

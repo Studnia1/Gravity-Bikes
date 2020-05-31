@@ -15,7 +15,6 @@ import { DialogComponent, DialogShowComponent } from './dialog/dialog.component'
 import { AuthService } from './_services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { RouterService } from './_services/router.service';
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { RouterService } from './_services/router.service';
   ],
   entryComponents: [DialogComponent, DialogShowComponent],
   providers: [
-    AuthService,
-    RouterService
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

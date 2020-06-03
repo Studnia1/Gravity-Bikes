@@ -1,6 +1,7 @@
 import { Component, Inject} from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuthService } from '../_services/auth.service';
+import { AlertifyService } from '../_services/alertify.service';
 
 
 
@@ -10,7 +11,7 @@ import { AuthService } from '../_services/auth.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog, private alertify: AlertifyService) {}
 
   openDialog() {
     this.dialog.open(DialogShowComponent);
@@ -24,7 +25,7 @@ export class DialogComponent {
   }
   logout() {
     localStorage.removeItem('token');
-    console.log('no i mnie nie ma :/');
+    this.alertify.message('logged out');
   }
 }
 @Component({
@@ -32,13 +33,13 @@ export class DialogComponent {
   templateUrl: 'dialog-show-component.html',
 })
 export class DialogShowComponent {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private alertify: AlertifyService) {}
   model: any = {};
   login() {
     this.authService.login(this.model).subscribe(next => {
-      console.log('gitara siema');
+      this.alertify.success('logged in successful');
     }, error => {
-      console.log('slabo:/');
+      this.alertify.error(error);
     });
   }
 }

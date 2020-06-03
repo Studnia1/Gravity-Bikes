@@ -16,6 +16,9 @@ import { AuthService } from './_services/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
+import { ParkMapComponent } from './park-map/park-map.component';
+import { BikeChooseComponent } from './bike-choose/bike-choose.component';
+import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
     DialogComponent,
     DialogShowComponent,
     RegisterComponent,
-    HomeComponent
+    HomeComponent,
+    ParkMapComponent,
+    BikeChooseComponent,
+    TicketBuyComponent
 
   ],
   imports: [

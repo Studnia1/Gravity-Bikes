@@ -1,5 +1,3 @@
-<app-navbar (showReg)="registerToogle()"></app-navbar>
-<div *ngIf="!registerMode">
     <div parallax class="rider-parallax" [config]="{axis: X, speed: -.3}"></div>
     <div class="slope"></div>
     <div class="post-container">
@@ -25,12 +23,5 @@
             <br>
         </div>
     </div>
-</div>
+    
 
-<div *ngIf="registerMode" class="container">
-    <div class="row justify-content-center">
-        <div class="col-4">
-            <app-register (hideReg)="registerToogle()"></app-register>
-        </div>
-    </div>
-</div>

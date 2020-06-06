@@ -24,11 +24,6 @@ code
 {
   background: #494a42;
   color: #d6d8ca;
-  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
-  filter: alpha(opacity=80);
-  -moz-opacity: 0.80;
-  -khtml-opacity: 0.8;
-  opacity: 0.8;
 }
 .mat-button{
   font-size: 30px;

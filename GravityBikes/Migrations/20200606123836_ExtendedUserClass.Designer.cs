@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GravityBikes.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200510190822_AddedUserEntity")]
-    partial class AddedUserEntity
+    [Migration("20200606123836_ExtendedUserClass")]
+    partial class ExtendedUserClass
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -45,7 +45,7 @@ namespace GravityBikes.Migrations
                     b.Property<int>("BikePrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BikeReservationID")
+                    b.Property<int?>("BikeReservationID1")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("BikeSize")
@@ -56,7 +56,7 @@ namespace GravityBikes.Migrations
 
                     b.HasKey("BikeId");
 
-                    b.HasIndex("BikeReservationID");
+                    b.HasIndex("BikeReservationID1");
 
                     b.ToTable("Bikes");
                 });
@@ -99,7 +99,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("BikeReservationOwnerId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("userID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("BikeReservationID");
+
+                    b.HasIndex("userID");
 
                     b.ToTable("BikeReservations");
                 });
@@ -154,7 +159,7 @@ namespace GravityBikes.Migrations
                     b.Property<int>("LiftTicketPrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("LiftTicketReservationID")
+                    b.Property<int?>("LiftTicketReservationID1")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LiftTicketType")
@@ -165,7 +170,7 @@ namespace GravityBikes.Migrations
 
                     b.HasKey("LiftTicketID");
 
-                    b.HasIndex("LiftTicketReservationID");
+                    b.HasIndex("LiftTicketReservationID1");
 
                     b.ToTable("LiftTickets");
                 });
@@ -188,7 +193,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("LiftTicketReservationOwnerId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("userID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("LiftTicketReservationID");
+
+                    b.HasIndex("userID");
 
                     b.ToTable("LiftTicketReservations");
                 });
@@ -214,12 +224,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("ParkTicketPrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("ParkTicketReservationID")
+                    b.Property<int?>("ParkTicketReservationID1")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("ParkTicketID");
 
-                    b.HasIndex("ParkTicketReservationID");
+                    b.HasIndex("ParkTicketReservationID1");
 
                     b.ToTable("ParkTickets");
                 });
@@ -242,7 +252,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("ParkTicketReservationOwnerId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("userID")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("ParkTicketReservationID");
+
+                    b.HasIndex("userID");
 
                     b.ToTable("ParkTicketReservations");
                 });
@@ -256,11 +271,23 @@ namespace GravityBikes.Migrations
                     b.Property<bool>("AllowUserMarketing")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
                     b.Property<bool>("IsUserActive")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsUserVerifed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnType("BLOB");
+
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("Surname")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UserCreatioDateTime")
                         .HasColumnType("TEXT");
@@ -280,21 +307,48 @@ namespace GravityBikes.Migrations
                 {
                     b.HasOne("GravityBikes.Data.Models.BikeReservation", null)
                         .WithMany("ReservedBikes")
-                        .HasForeignKey("BikeReservationID");
+                        .HasForeignKey("BikeReservationID1");
+                });
+
+            modelBuilder.Entity("GravityBikes.Data.Models.BikeReservation", b =>
+                {
+                    b.HasOne("GravityBikes.Data.Models.User", "user")
+                        .WithMany("BikeReservations")
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GravityBikes.Data.Models.LiftTicket", b =>
                 {
                     b.HasOne("GravityBikes.Data.Models.LiftTicketReservation", null)
                         .WithMany("ReservedLiftTickets")
-                        .HasForeignKey("LiftTicketReservationID");
+                        .HasForeignKey("LiftTicketReservationID1");
+                });
+
+            modelBuilder.Entity("GravityBikes.Data.Models.LiftTicketReservation", b =>
+                {
+                    b.HasOne("GravityBikes.Data.Models.User", "user")
+                        .WithMany("LiftTicketReservations")
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("GravityBikes.Data.Models.ParkTicket", b =>
                 {
                     b.HasOne("GravityBikes.Data.Models.ParkTicketReservation", null)
                         .WithMany("ReservedParkTicket")
-                        .HasForeignKey("ParkTicketReservationID");
+                        .HasForeignKey("ParkTicketReservationID1");
+                });
+
+            modelBuilder.Entity("GravityBikes.Data.Models.ParkTicketReservation", b =>
+                {
+                    b.HasOne("GravityBikes.Data.Models.User", "user")
+                        .WithMany("ParkTicketReservations")
+                        .HasForeignKey("userID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

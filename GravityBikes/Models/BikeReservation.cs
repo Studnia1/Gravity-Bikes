@@ -13,5 +13,7 @@ namespace GravityBikes.Data.Models
         public bool BikeReservationIsPaid { get; set; }
         public int BikeReservationOwnerId { get; set; }
         public ICollection<Bike> ReservedBikes { get; set; }
+        public User user {get; set;}
+        public int userID {get; set;}                
     }
 }

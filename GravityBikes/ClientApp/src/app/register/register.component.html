@@ -1,23 +1,34 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<div class="background-register" >
+    <div class = "background-rectangle">
+    <div class="register-model p-5">
+        <form #registerForm="ngForm" (ngSubmit)="register()">
+            <h2 class="text-center text-primary">Sign up</h2>
+            
+            <div class="form-group p-2">
+                <input type="email" class="form-control" required name="email" [(ngModel)]="model.email" placeholder="Email">
+            </div>
 
-            <br><br><br><br>
-    <h2 class="text-center text-primary">Sign up</h2>
-    <hr>
-    
-    <div class="form-group">
-        <input type="email" class="form-control" required name="email" [(ngModel)]="model.email" placeholder="Email">
+            <div class="form-group p-2">
+                <input type="password" class="form-control" required name="password" [(ngModel)]="model.password" placeholder="Password">
+            </div>
+
+            <div class="form-group p-2">
+                <input type="firstname" class="form-control" required name="firstname" [(ngModel)]="model.firstname" placeholder="Firstname">
+            </div>
+
+            <div class="form-group p-2">
+                <input type="surname" class="form-control" required name="surname" [(ngModel)]="model.surname" placeholder="Surname">
+            </div>
+
+            <mat-checkbox [required]>Do you agree to the marketing communication?</mat-checkbox>
+
+            <mat-checkbox [required]>Do you accept the terms?</mat-checkbox>
+
+            <div class="form-group text-center">
+                <button class="btn btn-success" type="submit">Register</button>
+                <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
+            </div>
+        </form>
     </div>
-
-    <div class="form-group">
-        <input type="password" class="form-control" required name="password" [(ngModel)]="model.password" placeholder="Password">
-    </div>
-
-    <mat-checkbox [required]>Do you agree to the marketing communication?</mat-checkbox>
-    <mat-checkbox [required]>Do you accept the terms?</mat-checkbox>
-
-    <div class="form-group text-center">
-        <button class="btn btn-success" type="submit">Register</button>
-        <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
-    </div>
-
-</form>
+</div>
+</div>

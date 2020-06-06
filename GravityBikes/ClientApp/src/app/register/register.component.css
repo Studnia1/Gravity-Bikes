@@ -1,0 +1,35 @@
+
+.form-group
+{
+    width: 400px;
+    margin: auto;
+}
+
+.background-register
+{
+    background-image: url('/assets/images/img3.jpg');
+    height: 100%;
+}
+
+.background-rectangle
+{
+    width:  33%;
+    height: 100vh;
+    background: rgba(73,74,66, 0.5);
+    margin: auto;
+    position: relative;
+}
+.register-model 
+{
+    position: absolute;
+    top: 30%;
+}
+
+::ng-deep .mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-indeterminate .mat-checkbox-background {
+    background-color: black !important;
+    text-align: center;
+  }
+
+  ::ng-deep .mat-checkbox:not(.mat-checkbox-disabled) .mat-checkbox-ripple .mat-ripple-element {
+    background-color: black !important;
+  }

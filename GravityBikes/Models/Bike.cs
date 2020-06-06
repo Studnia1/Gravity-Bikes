@@ -37,5 +37,7 @@ namespace GravityBikes.Data.Models
             forKids = 2
         }
 
+        BikeReservation bikeReservation {get; set;}
+        int BikeReservationID {get; set;}
     }
 }

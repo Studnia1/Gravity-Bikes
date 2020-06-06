@@ -13,5 +13,8 @@ namespace GravityBikes.Data.Models
         public int ParkTicketPrice { get; set; }
         public DateTime ParkTicketDateOfStart { get; set; }
         public DateTime ParkTicketDateOfStop { get; set; }
+
+        ParkTicketReservation parkTicketReservation {get; set;}
+        int ParkTicketReservationID {get; set;}
     }
 }

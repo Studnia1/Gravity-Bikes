@@ -19,6 +19,7 @@ import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { ParkMapComponent } from './park-map/park-map.component';
 import { BikeChooseComponent } from './bike-choose/bike-choose.component';
 import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
+import { appRoutes } from './routes';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
     ]),
     BrowserAnimationsModule,
     MaterialModule,
-    MatToolbarModule
+    MatToolbarModule,
+    RouterModule.forRoot(appRoutes)
 
   ],
   entryComponents: [DialogComponent, DialogShowComponent],

@@ -2,6 +2,7 @@ import { Component, Inject} from '@angular/core';
 import {MatDialog, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import { AuthService } from '../_services/auth.service';
 import { AlertifyService } from '../_services/alertify.service';
+import { Router } from '@angular/router';
 
 
 
@@ -11,7 +12,7 @@ import { AlertifyService } from '../_services/alertify.service';
   styleUrls: ['./dialog.component.css']
 })
 export class DialogComponent {
-  constructor(public dialog: MatDialog, private alertify: AlertifyService) {}
+  constructor(public dialog: MatDialog, private alertify: AlertifyService, private router: Router) {}
 
   openDialog() {
     this.dialog.open(DialogShowComponent);
@@ -26,6 +27,7 @@ export class DialogComponent {
   logout() {
     localStorage.removeItem('token');
     this.alertify.message('logged out');
+    this.router.navigate(['/home']);
   }
 }
 @Component({

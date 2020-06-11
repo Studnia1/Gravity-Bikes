@@ -1,4 +1,5 @@
- using GravityBikes.Data;
+using AutoMapper;
+using GravityBikes.Data;
 using GravityBikes.Helpers;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -29,7 +30,7 @@ namespace GravityBikes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -37,6 +38,7 @@ namespace GravityBikes
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddCors();
+            services.AddAutoMapper(typeof(BikeRentsRespository).Assembly);
             services.AddScoped<IAuthRespository, AuthRespository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>

@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GravityBikes.Data.Models
+namespace GravityBikes.Dtos
 {
-    public class Bike
+    public class BikesForListDto
     {
         public int BikeId { get; set; }
         public int BikePrice { get; set; }
-        public int BikeHireDaysCount { get; set; }
         public DateTime BikeDateOfHireStart { get; set; }
         public DateTime BikeDateOfHireStop { get; set; }
         public bool BikeIsAvaible { get; set; }
@@ -37,8 +36,5 @@ namespace GravityBikes.Data.Models
             enduro = 1,
             forKids = 2
         }
-
-        BikeReservation bikeReservation {get; set;}
-        int BikeReservationID {get; set;}
     }
 }

@@ -17,10 +17,10 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { ParkMapComponent } from './park-map/park-map.component';
-import { BikeChooseComponent } from './bike-choose/bike-choose.component';
+import { BikeChooseComponent } from './bikes/bike-choose/bike-choose.component';
 import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
 import { appRoutes } from './routes';
-
+import { BikeCardComponent } from './bikes/bike-card/bike-card.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +32,8 @@ import { appRoutes } from './routes';
     HomeComponent,
     ParkMapComponent,
     BikeChooseComponent,
-    TicketBuyComponent
+    TicketBuyComponent,
+    BikeCardComponent
 
   ],
   imports: [

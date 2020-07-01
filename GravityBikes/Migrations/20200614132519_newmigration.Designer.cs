@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GravityBikes.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200606123836_ExtendedUserClass")]
-    partial class ExtendedUserClass
+    [Migration("20200614132519_newmigration")]
+    partial class newmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,9 @@ namespace GravityBikes.Migrations
 
                     b.Property<int>("BikeType")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("BikeId");
 

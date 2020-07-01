@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GravityBikes.Migrations
 {
-    public partial class ExtendedUserClass : Migration
+    public partial class newmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -145,6 +145,7 @@ namespace GravityBikes.Migrations
                     BikeSize = table.Column<int>(nullable: false),
                     BikeGender = table.Column<int>(nullable: false),
                     BikeType = table.Column<int>(nullable: false),
+                    PhotoUrl = table.Column<string>(nullable: true),
                     BikeReservationID1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

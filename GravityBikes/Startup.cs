@@ -40,6 +40,7 @@ namespace GravityBikes
             services.AddCors();
             services.AddAutoMapper(typeof(BikeRentsRespository).Assembly);
             services.AddScoped<IAuthRespository, AuthRespository>();
+            services.AddScoped<IBikeRentsRespository, BikeRentsRespository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {

@@ -52,6 +52,9 @@ namespace GravityBikes.Migrations
                     b.Property<int>("BikeType")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("PhotoUrl")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("BikeId");
 
                     b.HasIndex("BikeReservationID1");

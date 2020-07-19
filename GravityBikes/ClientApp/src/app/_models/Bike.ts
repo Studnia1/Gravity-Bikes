@@ -1,8 +1,6 @@
 export interface Bike {
     bikeId: number;
     bikePrice: number;
-    bikeDateOfHireStart: Date;
-    bikeDateOfHireStop: Date;
     bikeIsAvaible: boolean;
     bikeModel: string;
     bikeSize: BikeSizes;

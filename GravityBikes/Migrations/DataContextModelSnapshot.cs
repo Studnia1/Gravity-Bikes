@@ -22,16 +22,7 @@ namespace GravityBikes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("BikeDateOfHireStart")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("BikeDateOfHireStop")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("BikeGender")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BikeHireDaysCount")
+                    b.Property<byte>("BikeGender")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("BikeIsAvaible")
@@ -43,21 +34,16 @@ namespace GravityBikes.Migrations
                     b.Property<int>("BikePrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("BikeReservationID1")
+                    b.Property<byte>("BikeSize")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BikeSize")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BikeType")
+                    b.Property<byte>("BikeType")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("TEXT");
 
                     b.HasKey("BikeId");
-
-                    b.HasIndex("BikeReservationID1");
 
                     b.ToTable("Bikes");
                 });
@@ -88,22 +74,24 @@ namespace GravityBikes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("BikeReservationDateOfOrder")
-                        .HasColumnType("TEXT");
-
                     b.Property<DateTime>("BikeReservationDateOfPayment")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("BikeReservationIsPaid")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("BikeReservationOwnerId")
+                    b.Property<DateTime>("DateOfReservation")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ReservedBikeBikeId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("userID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("BikeReservationID");
+
+                    b.HasIndex("ReservedBikeBikeId");
 
                     b.HasIndex("userID");
 
@@ -304,15 +292,12 @@ namespace GravityBikes.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("GravityBikes.Data.Models.Bike", b =>
-                {
-                    b.HasOne("GravityBikes.Data.Models.BikeReservation", null)
-                        .WithMany("ReservedBikes")
-                        .HasForeignKey("BikeReservationID1");
-                });
-
             modelBuilder.Entity("GravityBikes.Data.Models.BikeReservation", b =>
                 {
+                    b.HasOne("GravityBikes.Data.Models.Bike", "ReservedBike")
+                        .WithMany()
+                        .HasForeignKey("ReservedBikeBikeId");
+
                     b.HasOne("GravityBikes.Data.Models.User", "user")
                         .WithMany("BikeReservations")
                         .HasForeignKey("userID")

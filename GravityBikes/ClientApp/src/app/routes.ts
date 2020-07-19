@@ -4,6 +4,7 @@ import { ParkMapComponent } from './park-map/park-map.component';
 import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
 import { RegisterComponent } from './register/register.component';
 import { BikeChooseComponent } from './bikes/bike-choose/bike-choose.component';
+import { CartComponent } from './cart/cart.component';
 
 export const appRoutes: Routes = [
     {path: 'home', component: HomeComponent},
@@ -11,6 +12,7 @@ export const appRoutes: Routes = [
     {path: 'park_map', component: ParkMapComponent},
     {path: 'bike_choose', component: BikeChooseComponent},
     {path: 'ticket_buy', component: TicketBuyComponent},
+    {path: 'cart', component: CartComponent},
     {path: '**', redirectTo: 'home', pathMatch: 'full'},
 
 ];

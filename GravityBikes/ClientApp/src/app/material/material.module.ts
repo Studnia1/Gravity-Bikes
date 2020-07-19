@@ -3,8 +3,12 @@ import {MatMenuModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatI
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
+
+
 
 const material = [
   MatToolbarModule,
@@ -18,6 +22,8 @@ const material = [
   MatMenuModule,
   MatCheckboxModule,
   MatCardModule,
+  MatRadioModule,
+  MatButtonToggleModule,
   MatDatepickerModule,
   MatNativeDateModule
 ];

@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ParallaxScrollModule } from 'ng2-parallaxscroll';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {NgbPaginationModule, NgbAlertModule, NgbDatepickerModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import {MaterialModule} from './material/material.module';
@@ -20,7 +21,10 @@ import { ParkMapComponent } from './park-map/park-map.component';
 import { BikeChooseComponent } from './bikes/bike-choose/bike-choose.component';
 import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
 import { appRoutes } from './routes';
-import { BikeCardComponent } from './bikes/bike-card/bike-card.component';
+import { BikeCardComponent, DialogCalendarComponent } from './bikes/bike-card/bike-card.component';
+import { BikeService } from './_services/bike.service';
+import { ShoppingCartService } from './_services/shopping-cart.service';
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +37,9 @@ import { BikeCardComponent } from './bikes/bike-card/bike-card.component';
     ParkMapComponent,
     BikeChooseComponent,
     TicketBuyComponent,
-    BikeCardComponent
+    BikeCardComponent,
+    DialogCalendarComponent,
+    CartComponent
 
   ],
   imports: [
@@ -46,13 +52,18 @@ import { BikeCardComponent } from './bikes/bike-card/bike-card.component';
     BrowserAnimationsModule,
     MaterialModule,
     MatToolbarModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    NgbPaginationModule,
+    NgbAlertModule,
+    NgbDatepickerModule
 
   ],
-  entryComponents: [DialogComponent, DialogShowComponent],
+  entryComponents: [DialogComponent, DialogShowComponent, DialogCalendarComponent],
   providers: [
     AuthService,
-    ErrorInterceptorProvider
+    ErrorInterceptorProvider,
+    BikeService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

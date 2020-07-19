@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GravityBikes.Migrations
 {
-    public partial class newmigration : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -20,6 +20,25 @@ namespace GravityBikes.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BikeParks", x => x.BikeParkID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bikes",
+                columns: table => new
+                {
+                    BikeId = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    BikePrice = table.Column<int>(nullable: false),
+                    BikeIsAvaible = table.Column<bool>(nullable: false),
+                    BikeModel = table.Column<string>(nullable: true),
+                    BikeSize = table.Column<byte>(nullable: false),
+                    BikeGender = table.Column<byte>(nullable: false),
+                    BikeType = table.Column<byte>(nullable: false),
+                    PhotoUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bikes", x => x.BikeId);
                 });
 
             migrationBuilder.CreateTable(
@@ -67,15 +86,21 @@ namespace GravityBikes.Migrations
                 {
                     BikeReservationID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    BikeReservationDateOfOrder = table.Column<DateTime>(nullable: false),
                     BikeReservationDateOfPayment = table.Column<DateTime>(nullable: false),
                     BikeReservationIsPaid = table.Column<bool>(nullable: false),
-                    BikeReservationOwnerId = table.Column<int>(nullable: false),
+                    DateOfReservation = table.Column<DateTime>(nullable: false),
+                    ReservedBikeBikeId = table.Column<int>(nullable: true),
                     userID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BikeReservations", x => x.BikeReservationID);
+                    table.ForeignKey(
+                        name: "FK_BikeReservations_Bikes_ReservedBikeBikeId",
+                        column: x => x.ReservedBikeBikeId,
+                        principalTable: "Bikes",
+                        principalColumn: "BikeId",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_BikeReservations_Users_userID",
                         column: x => x.userID,
@@ -131,35 +156,6 @@ namespace GravityBikes.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bikes",
-                columns: table => new
-                {
-                    BikeId = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    BikePrice = table.Column<int>(nullable: false),
-                    BikeHireDaysCount = table.Column<int>(nullable: false),
-                    BikeDateOfHireStart = table.Column<DateTime>(nullable: false),
-                    BikeDateOfHireStop = table.Column<DateTime>(nullable: false),
-                    BikeIsAvaible = table.Column<bool>(nullable: false),
-                    BikeModel = table.Column<string>(nullable: true),
-                    BikeSize = table.Column<int>(nullable: false),
-                    BikeGender = table.Column<int>(nullable: false),
-                    BikeType = table.Column<int>(nullable: false),
-                    PhotoUrl = table.Column<string>(nullable: true),
-                    BikeReservationID1 = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Bikes", x => x.BikeId);
-                    table.ForeignKey(
-                        name: "FK_Bikes_BikeReservations_BikeReservationID1",
-                        column: x => x.BikeReservationID1,
-                        principalTable: "BikeReservations",
-                        principalColumn: "BikeReservationID",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "LiftTickets",
                 columns: table => new
                 {
@@ -211,14 +207,14 @@ namespace GravityBikes.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_BikeReservations_ReservedBikeBikeId",
+                table: "BikeReservations",
+                column: "ReservedBikeBikeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_BikeReservations_userID",
                 table: "BikeReservations",
                 column: "userID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Bikes_BikeReservationID1",
-                table: "Bikes",
-                column: "BikeReservationID1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LiftTicketReservations_userID",
@@ -247,7 +243,7 @@ namespace GravityBikes.Migrations
                 name: "BikeParks");
 
             migrationBuilder.DropTable(
-                name: "Bikes");
+                name: "BikeReservations");
 
             migrationBuilder.DropTable(
                 name: "DaysLimits");
@@ -259,7 +255,7 @@ namespace GravityBikes.Migrations
                 name: "ParkTickets");
 
             migrationBuilder.DropTable(
-                name: "BikeReservations");
+                name: "Bikes");
 
             migrationBuilder.DropTable(
                 name: "LiftTicketReservations");

@@ -9,32 +9,12 @@ namespace GravityBikes.Dtos
     {
         public int BikeId { get; set; }
         public int BikePrice { get; set; }
-        public DateTime BikeDateOfHireStart { get; set; }
-        public DateTime BikeDateOfHireStop { get; set; }
         public bool BikeIsAvaible { get; set; }
         public string BikeModel { get; set; }
-        public BikeSizes BikeSize { get; set; }
-        public BikeGenders BikeGender { get; set; }
-        public BikeTypes BikeType { get; set; }
+        public byte BikeSize { get; set; }
+        public byte BikeGender { get; set; }
+        public byte BikeType { get; set; }
         public string PhotoUrl { get; set; }
-        public enum BikeSizes
-        {
-            s = 0,
-            m = 1,
-            l = 2,
-            xl = 3
-        }
-        public enum BikeGenders
-        {
-            male = 0,
-            female = 1
-        }
 
-        public enum BikeTypes
-        {
-            downhill, freeride = 0,
-            enduro = 1,
-            forKids = 2
-        }
     }
 }

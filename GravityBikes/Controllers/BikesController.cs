@@ -37,6 +37,11 @@ namespace GravityBikes.Controllers
 
             return Ok(bikeToReturn);
         }
-
+        [HttpPost("availablebikes")]
+        public async Task<IActionResult> AvailableBikes(BikesAvaiable bikesAvaiable)
+        {
+            var bike = await _repo.AvailableBikes(bikesAvaiable.Model, bikesAvaiable.Size);
+            return Ok(bike);
+        }
     }
 }

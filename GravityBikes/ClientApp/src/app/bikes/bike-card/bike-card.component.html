@@ -1,3 +1,4 @@
+
 <mat-card class="example-card">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
@@ -11,6 +12,18 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>SHARE</button>
+      <br>
+      <label class="example-margin">Size:</label>
+      <br>
+      <mat-radio-group  (click) ="loadDates()" [(ngModel)]="size">
+        <mat-radio-button  class="example-margin p-1" (click) ="test()" value="0">S</mat-radio-button>
+        <mat-radio-button  class="example-margin p-1" (click) ="test()" value="1">M</mat-radio-button>
+        <mat-radio-button  class="example-margin p-1" (click) ="test()" value="2">L</mat-radio-button>
+        <mat-radio-button  class="example-margin p-1" (click) ="test()" value="3">XL</mat-radio-button>
+        <button mat-raised-button (click)="test()"  >Open</button>
+        <button (click)="addToCart(bike.bikeModel)">Buy</button>
+      </mat-radio-group>
     </mat-card-actions>
+      <app-dialog-calendar-component (DatePicked)="doSomething($event.value)" [bikeDate]="bikeDates"></app-dialog-calendar-component>
+   
     

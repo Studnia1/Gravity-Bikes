@@ -1,0 +1,47 @@
+.table-striped>thead>tr>th, .table-striped>tbody>tr>th, .table-striped>tfoot>tr>th, .table-striped>thead>tr>td, .table-striped>tbody>tr>td, .table-striped>tfoot>tr>td{
+    padding: 20px;
+}
+.tickets-list
+{
+    margin-left: 300px;
+    margin-right: 300px;
+    margin-top: 200px;
+}
+.tickets-color
+{
+    background: #494a42;
+    color: white;
+
+}
+.tickets-color2
+{
+    background:  #dadbd6;
+
+}
+.hovered2:hover
+{
+    background:  #dadbd6;
+    cursor: pointer;
+}
+
+.hovered:hover
+{
+    background: #494a42;
+    color: white;
+    cursor: pointer;
+}
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 10
+  }
+  .newTicket{
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+  }

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GravityBikes.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20200714144755_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200803133433_initialcreate")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -132,25 +132,19 @@ namespace GravityBikes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("BikeDateOfHireStop")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LiftTicketDateOfStart")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("LiftTicketDateOfStop")
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("IsDayLimitedTicket")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("LiftTicketDaysCount")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("LiftTicketDiscountType")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("LiftTicketPrice")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("LiftTicketReservationID1")
+                    b.Property<int>("LiftTicketPriceReduced")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("LiftTicketReservationID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LiftTicketType")
@@ -159,9 +153,15 @@ namespace GravityBikes.Migrations
                     b.Property<int>("LiftTicketUseCount")
                         .HasColumnType("INTEGER");
 
+                    b.Property<DateTime>("LimitStart")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LimitStop")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("LiftTicketID");
 
-                    b.HasIndex("LiftTicketReservationID1");
+                    b.HasIndex("LiftTicketReservationID");
 
                     b.ToTable("LiftTickets");
                 });
@@ -171,6 +171,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("LiftTicketReservationID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("LiftTicketDateOfStart")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("LiftTicketDateOfStop")
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("LiftTicketReservationDateOfOrder")
                         .HasColumnType("TEXT");
@@ -184,12 +190,12 @@ namespace GravityBikes.Migrations
                     b.Property<int>("LiftTicketReservationOwnerId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("userID")
+                    b.Property<int?>("UserID")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("LiftTicketReservationID");
 
-                    b.HasIndex("userID");
+                    b.HasIndex("UserID");
 
                     b.ToTable("LiftTicketReservations");
                 });
@@ -311,16 +317,14 @@ namespace GravityBikes.Migrations
                 {
                     b.HasOne("GravityBikes.Data.Models.LiftTicketReservation", null)
                         .WithMany("ReservedLiftTickets")
-                        .HasForeignKey("LiftTicketReservationID1");
+                        .HasForeignKey("LiftTicketReservationID");
                 });
 
             modelBuilder.Entity("GravityBikes.Data.Models.LiftTicketReservation", b =>
                 {
                     b.HasOne("GravityBikes.Data.Models.User", "user")
                         .WithMany("LiftTicketReservations")
-                        .HasForeignKey("userID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserID");
                 });
 
             modelBuilder.Entity("GravityBikes.Data.Models.ParkTicket", b =>

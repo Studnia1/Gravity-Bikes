@@ -9,6 +9,7 @@ namespace GravityBikes.Helpers
         public AutoMapperProfiles()
         {
             CreateMap<Bike, BikesForListDto>();
+            CreateMap<LiftTicket, TicketsForListDto>();
         }
     }
 }

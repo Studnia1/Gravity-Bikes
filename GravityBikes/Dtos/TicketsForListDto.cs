@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GravityBikes.Data.Models
+namespace GravityBikes.Dtos
 {
-    public class LiftTicket
+    public class TicketsForListDto
     {
         public int LiftTicketID { get; set; }
         public int LiftTicketUseCount { get; set; }

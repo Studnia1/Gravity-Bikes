@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GravityBikes.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initialcreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -119,17 +119,19 @@ namespace GravityBikes.Migrations
                     LiftTicketReservationDateOfPayment = table.Column<DateTime>(nullable: false),
                     LiftTicketReservationIsPaid = table.Column<bool>(nullable: false),
                     LiftTicketReservationOwnerId = table.Column<int>(nullable: false),
-                    userID = table.Column<int>(nullable: false)
+                    LiftTicketDateOfStart = table.Column<DateTime>(nullable: false),
+                    LiftTicketDateOfStop = table.Column<DateTime>(nullable: false),
+                    UserID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LiftTicketReservations", x => x.LiftTicketReservationID);
                     table.ForeignKey(
-                        name: "FK_LiftTicketReservations_Users_userID",
-                        column: x => x.userID,
+                        name: "FK_LiftTicketReservations_Users_UserID",
+                        column: x => x.UserID,
                         principalTable: "Users",
                         principalColumn: "UserID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -163,20 +165,20 @@ namespace GravityBikes.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     LiftTicketUseCount = table.Column<int>(nullable: false),
                     LiftTicketDaysCount = table.Column<int>(nullable: false),
-                    LiftTicketDiscountType = table.Column<string>(nullable: true),
+                    LiftTicketPriceReduced = table.Column<int>(nullable: false),
+                    IsDayLimitedTicket = table.Column<bool>(nullable: false),
                     LiftTicketPrice = table.Column<int>(nullable: false),
                     LiftTicketType = table.Column<string>(nullable: true),
-                    LiftTicketDateOfStart = table.Column<DateTime>(nullable: false),
-                    LiftTicketDateOfStop = table.Column<DateTime>(nullable: false),
-                    BikeDateOfHireStop = table.Column<DateTime>(nullable: false),
-                    LiftTicketReservationID1 = table.Column<int>(nullable: true)
+                    LimitStart = table.Column<DateTime>(nullable: false),
+                    LimitStop = table.Column<DateTime>(nullable: false),
+                    LiftTicketReservationID = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_LiftTickets", x => x.LiftTicketID);
                     table.ForeignKey(
-                        name: "FK_LiftTickets_LiftTicketReservations_LiftTicketReservationID1",
-                        column: x => x.LiftTicketReservationID1,
+                        name: "FK_LiftTickets_LiftTicketReservations_LiftTicketReservationID",
+                        column: x => x.LiftTicketReservationID,
                         principalTable: "LiftTicketReservations",
                         principalColumn: "LiftTicketReservationID",
                         onDelete: ReferentialAction.Restrict);
@@ -217,14 +219,14 @@ namespace GravityBikes.Migrations
                 column: "userID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LiftTicketReservations_userID",
+                name: "IX_LiftTicketReservations_UserID",
                 table: "LiftTicketReservations",
-                column: "userID");
+                column: "UserID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_LiftTickets_LiftTicketReservationID1",
+                name: "IX_LiftTickets_LiftTicketReservationID",
                 table: "LiftTickets",
-                column: "LiftTicketReservationID1");
+                column: "LiftTicketReservationID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ParkTicketReservations_userID",

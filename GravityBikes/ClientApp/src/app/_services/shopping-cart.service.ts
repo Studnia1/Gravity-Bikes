@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 export class ShoppingCartService {
 
   items = [];
+  tickets = [];
 
   addToCart(product) {
     this.items.push(product);
@@ -15,8 +16,17 @@ export class ShoppingCartService {
     return this.items;
   }
 
+  ticketsToCart(product) {
+    this.tickets.push(product);
+  }
+
+  getTickets() {
+    return this.tickets;
+  }
+
   clearCart() {
     this.items = [];
+    this.tickets = [];
     return this.items;
   }
   constructor() { }

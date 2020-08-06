@@ -13,8 +13,9 @@ namespace GravityBikes.Data.Models
         public bool LiftTicketReservationIsPaid { get; set; }
         public int LiftTicketReservationOwnerId { get; set; }
         public ICollection<LiftTicket> ReservedLiftTickets { get; set; }
+        public DateTime LiftTicketDateOfStart { get; set; }
+        public DateTime LiftTicketDateOfStop { get; set; }
 
         public User user {get; set;}
-        public int userID {get; set;}
     }
 }

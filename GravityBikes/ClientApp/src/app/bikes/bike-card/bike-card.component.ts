@@ -41,6 +41,7 @@ export class BikeCardComponent implements OnInit {
     this.modelToCart.bikeModel = this.bike.bikeModel;
     this.modelToCart.size = this.size;
     this.modelToCart.date = date;
+    this.modelToCart.price = this.bike.bikePrice;
     console.log(this.modelToCart);
 }
 }

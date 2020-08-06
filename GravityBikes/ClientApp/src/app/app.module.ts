@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { ParallaxScrollModule } from 'ng2-parallaxscroll';
@@ -19,12 +19,12 @@ import { HomeComponent } from './home/home.component';
 import { ErrorInterceptorProvider } from './_services/error.interceptor';
 import { ParkMapComponent } from './park-map/park-map.component';
 import { BikeChooseComponent } from './bikes/bike-choose/bike-choose.component';
-import { TicketBuyComponent } from './ticket-buy/ticket-buy.component';
 import { appRoutes } from './routes';
 import { BikeCardComponent, DialogCalendarComponent } from './bikes/bike-card/bike-card.component';
 import { BikeService } from './_services/bike.service';
 import { ShoppingCartService } from './_services/shopping-cart.service';
 import { CartComponent } from './cart/cart.component';
+import { TicketsComponent, TicketDialogComponent } from './tickets/tickets.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +36,11 @@ import { CartComponent } from './cart/cart.component';
     HomeComponent,
     ParkMapComponent,
     BikeChooseComponent,
-    TicketBuyComponent,
     BikeCardComponent,
     DialogCalendarComponent,
-    CartComponent
+    CartComponent,
+    TicketsComponent,
+    TicketDialogComponent
 
   ],
   imports: [
@@ -55,10 +56,11 @@ import { CartComponent } from './cart/cart.component';
     RouterModule.forRoot(appRoutes),
     NgbPaginationModule,
     NgbAlertModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    ReactiveFormsModule
 
   ],
-  entryComponents: [DialogComponent, DialogShowComponent, DialogCalendarComponent],
+  entryComponents: [DialogComponent, DialogShowComponent, DialogCalendarComponent, TicketDialogComponent],
   providers: [
     AuthService,
     ErrorInterceptorProvider,

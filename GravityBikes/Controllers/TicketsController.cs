@@ -6,6 +6,7 @@ using AutoMapper;
 using GravityBikes.Data;
 using GravityBikes.Data.Models;
 using GravityBikes.Dtos;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GravityBikes.Controllers
@@ -23,7 +24,7 @@ namespace GravityBikes.Controllers
             _repo= repo;
             _mapper = mapper;
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> GetTickets()
         {
@@ -32,6 +33,7 @@ namespace GravityBikes.Controllers
 
             return Ok(bikesToReturn);
         }
+        [Authorize(Roles = "Admin")]
         [HttpPost("newticket")]
         public async Task<IActionResult> AddNewTicket (NewTicketDto newTicketDto)
         {

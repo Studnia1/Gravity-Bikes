@@ -10,6 +10,7 @@ namespace GravityBikes.Helpers
         {
             CreateMap<Bike, BikesForListDto>();
             CreateMap<LiftTicket, TicketsForListDto>();
+            CreateMap<UserForRegisterDto, User>();
         }
     }
 }

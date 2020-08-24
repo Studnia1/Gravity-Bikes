@@ -50,5 +50,11 @@ namespace GravityBikes.Data
             return bikes;
         }
 
+        public async Task<Bike> NewBike(Bike bike)
+        {
+            await _context.Bikes.AddAsync(bike);
+            await _context.SaveChangesAsync();
+            return bike;
+        }
     }
 }

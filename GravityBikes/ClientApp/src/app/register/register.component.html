@@ -1,34 +1,233 @@
-<div class="background-register" >
-    <div class = "background-rectangle">
+<div class="background-register">
+  <div class="background-rectangle">
     <div class="register-model p-5">
-        <form #registerForm="ngForm" (ngSubmit)="register()">
-            <h2 class="text-center text-primary">Sign up</h2>
-            
-            <div class="form-group p-2">
-                <input type="email" class="form-control" required name="email" [(ngModel)]="model.email" placeholder="Email">
-            </div>
+      <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <h2 class="text-center text-primary">Sign up</h2>
 
-            <div class="form-group p-2">
-                <input type="password" class="form-control" required name="password" [(ngModel)]="model.password" placeholder="Password">
-            </div>
+        
+  <div class="form-group p-2">
+    <input type="text" 
+      [ngClass]="{'is-invalid': registerForm.get('username').errors 
+        && registerForm.get('username').touched}"
+      class="form-control" 
+      formControlName="username" 
+      placeholder="Username">
+    <div class="invalid-feedback">Please choose a username</div>
+  </div>
 
-            <!-- <div class="form-group p-2">
-                <input type="firstname" class="form-control" required name="firstname" [(ngModel)]="model.firstname" placeholder="Firstname">
-            </div>
+        <div class="form-group p-2">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('firstname').errors &&
+                registerForm.get('firstname').touched
+            }"
+            class="form-control"
+            placeholder="firstname"
+            formControlName="firstname"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('firstname').touched &&
+              registerForm.get('firstname').hasError('required')
+            "
+          >
+            Known as is required
+          </div>
+        </div>
+        <div class="form-group p-2">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('surname').errors &&
+                registerForm.get('surname').touched
+            }"
+            class="form-control"
+            placeholder="surname"
+            formControlName="surname"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('surname').touched &&
+              registerForm.get('surname').hasError('required')
+            "
+          >
+            Known as is required
+          </div>
+        </div>
+        <div class="form-group p-2">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('dateOfBirth').errors &&
+                registerForm.get('dateOfBirth').touched
+            }"
+            class="form-control"
+            placeholder="Date of Birth"
+            formControlName="dateOfBirth"
+            type="date"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('dateOfBirth').touched &&
+              registerForm.get('dateOfBirth').hasError('required')
+            "
+          >
+            Date of Birth is required
+          </div>
+        </div>
 
-            <div class="form-group p-2">
-                <input type="surname" class="form-control" required name="surname" [(ngModel)]="model.surname" placeholder="Surname">
-            </div> -->
+        <div class="form-group p-2">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('city').errors &&
+                registerForm.get('city').touched
+            }"
+            class="form-control"
+            placeholder="City"
+            formControlName="city"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('city').touched &&
+              registerForm.get('city').hasError('required')
+            "
+          >
+            City is required
+          </div>
+        </div>
 
-            <mat-checkbox [required]>Do you agree to the marketing communication?</mat-checkbox>
+        <div class="form-group p-2">
+          <input
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('country').errors &&
+                registerForm.get('country').touched
+            }"
+            class="form-control"
+            placeholder="Country"
+            formControlName="country"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('country').touched &&
+              registerForm.get('country').hasError('required')
+            "
+          >
+            Country is required
+          </div>
+        </div>
 
-            <mat-checkbox [required]>Do you accept the terms?</mat-checkbox>
+        <div class="form-group p-2">
+          <input
+            type="email"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('email').errors &&
+                registerForm.get('email').touched
+            }"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email"
+          />
+          <div class="invalid-feedback">Please choose a username</div>
+        </div>
 
-            <div class="form-group text-center">
-                <button class="btn btn-success" type="submit">Register</button>
-                <button class="btn btn-default" type="button" (click)="cancel()">Cancel</button>
-            </div>
-        </form>
+        <div class="form-group p-2">
+          <input
+            type="password"
+            [ngClass]="{
+              'is-invalid':
+                registerForm.get('password').errors &&
+                registerForm.get('password').touched
+            }"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('password').hasError('required') &&
+              registerForm.get('password').touched
+            "
+          >
+            Password is required
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('password').hasError('minlenght') &&
+              registerForm.get('password').touched
+            "
+          >
+            Password must be at least 4 characters
+          </div>
+
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('password').hasError('maxlenght') &&
+              registerForm.get('password').touched
+            "
+          >
+            Password cannot exceed 8 characters
+          </div>
+        </div>
+
+        <div class="form-group p-2">
+          <input
+            type="password"
+            [ngClass]="{
+              'is-invalid':
+                (registerForm.get('confirmPassword').errors &&
+                  registerForm.get('confirmPassword').touched) ||
+                (registerForm.get('confirmPassword').touched &&
+                  registerForm.hasError('mismatch'))
+            }"
+            class="form-control"
+            formControlName="confirmPassword"
+            placeholder="Confirm Password"
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.get('confirmPassword').hasError('required') &&
+              registerForm.get('confirmPassword').touched
+            "
+          >
+            Password is required
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              registerForm.hasError('mismatch') &&
+              registerForm.get('confirmPassword').touched
+            "
+          >
+            Password must match
+          </div>
+        </div>
+
+        <mat-checkbox [required]
+          >Do you agree to the marketing communication?</mat-checkbox
+        >
+
+        <mat-checkbox [required]>Do you accept the terms?</mat-checkbox>
+
+        <div class="form-group text-center">
+          <button class="btn btn-success" [disabled]="!registerForm.valid" type="submit">Register</button>
+          <button class="btn btn-default" type="button" (click)="cancel()">
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
-</div>
+  </div>
 </div>

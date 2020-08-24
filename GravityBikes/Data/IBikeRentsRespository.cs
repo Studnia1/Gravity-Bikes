@@ -15,6 +15,7 @@ namespace GravityBikes.Data
 
         Task<bool> BikesToReservation();
         Task<List<ReservedBikeViewModel>> AvailableBikes(string model, byte size);
+        Task<Bike> NewBike(Bike bike);
 
 
 

@@ -1,10 +1,14 @@
+using AutoMapper;
 using GravityBikes.Data;
 using GravityBikes.Data.Models;
 using GravityBikes.Dtos;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -15,47 +19,67 @@ namespace GravityBikes.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [AllowAnonymous]
     public class AuthController : ControllerBase
     {
-        private readonly IAuthRespository _repo;
-
+        private readonly IMapper _mapper;
         private readonly IConfiguration _config;
-        public AuthController(IAuthRespository repo, IConfiguration config)
+        private readonly SignInManager<User> _signInManager;
+        private readonly UserManager<User> _userManager;
+        public AuthController( IConfiguration config, UserManager<User> userManager, SignInManager<User> signInManager, IMapper mapper)
         {
-            _repo = repo;
             _config = config;
+            _signInManager = signInManager;
+            _userManager = userManager;
+            _mapper = mapper;
         }
+
 
         [HttpPost("register")]
         public async Task<IActionResult> Register (UserForRegisterDto userForRegisterDto) 
         {
 
-            userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
-            if (await _repo.UserExsist(userForRegisterDto.Email))
-                return BadRequest("Email is already used");
+            var result = await _userManager.CreateAsync(userToCreate, userForRegisterDto.Password);
 
-            var userToCreate = new User
+            if(result.Succeeded)
             {
-                UserEmail = userForRegisterDto.Email
-            };
-
-            var createdUser = await _repo.Register(userToCreate, userForRegisterDto.Password);
-
-            return StatusCode(201);
+                return StatusCode(201);
+            }
+            return BadRequest(result.Errors);
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login (UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.Login(userForLoginDto.Email.ToLower(), userForLoginDto.Password);
+            var user = await _userManager.FindByEmailAsync(userForLoginDto.Email);
 
-            if (userFromRepo == null)
-                return Unauthorized();
-            var claims = new[]
+            var result = await _signInManager.CheckPasswordSignInAsync(user, userForLoginDto.Password, false);
+
+            if(result.Succeeded)
             {
-                new Claim(ClaimTypes.NameIdentifier, userFromRepo.UserID.ToString()),
-                new Claim(ClaimTypes.Email, userFromRepo.UserEmail)
+                return Ok(new
+                {
+                    token = GenerateJwtToken(user).Result
+                });
+            }
+
+            return Unauthorized();
+        }
+        private async Task<string> GenerateJwtToken(User user)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                new Claim(ClaimTypes.Email, user.Email)
             };
+
+            var roles = await _userManager.GetRolesAsync(user);
+            
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config.GetSection("AppSettings:Token").Value));
 
@@ -73,10 +97,7 @@ namespace GravityBikes.Controllers
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new
-            {
-                token = tokenHandler.WriteToken(token)
-            });
+            return tokenHandler.WriteToken(token);
         }
     }
 }

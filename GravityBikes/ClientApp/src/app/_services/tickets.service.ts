@@ -17,4 +17,7 @@ baseUrl = environment.apiUrl;
   postTicket(model: any) {
     return this.http.post(this.baseUrl + 'tickets/newticket', model);
   }
+  deleteTicket(id: number) {
+    return  this.http.post(this.baseUrl + 'tickets/deleteticket', id);
+  }
 }

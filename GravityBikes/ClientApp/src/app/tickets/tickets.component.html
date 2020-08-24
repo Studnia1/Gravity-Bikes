@@ -16,7 +16,7 @@
     </tr>
   </table>
 </div>
-<div class="newTicket border p-2">
+<div *appHasRole="['Admin']" class="newTicket border p-2">
   <form class="example-form">
     <mat-form-field class="example-full-width">
       <mat-label>Ticket use count</mat-label>

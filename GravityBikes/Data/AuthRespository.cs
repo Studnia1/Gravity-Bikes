@@ -18,13 +18,13 @@ namespace GravityBikes.Data
 
         public async Task<User> Login(string useremail, string password)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(x => x.UserEmail == useremail);
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == useremail);
 
             if (user == null)
                 return null;
 
-            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
+            //if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+            //    return null;
 
             return user;
         }
@@ -47,8 +47,8 @@ namespace GravityBikes.Data
             byte[] passwordHash, passwordSalt;
             CreatePasswordHash(password, out passwordHash, out passwordSalt);
 
-            user.PasswordHash = passwordHash;
-            user.PasswordSalt = passwordSalt;
+            //user.PasswordHash = passwordHash;
+            //user.PasswordSalt = passwordSalt;
             
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -69,7 +69,7 @@ namespace GravityBikes.Data
 
         public async Task<bool> UserExsist(string useremail)
         {
-            if (await _context.Users.AnyAsync(x => x.UserEmail == useremail))
+            if (await _context.Users.AnyAsync(x => x.Email == useremail))
                 return true;
 
             return false;

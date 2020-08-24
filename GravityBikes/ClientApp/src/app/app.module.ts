@@ -25,6 +25,9 @@ import { BikeService } from './_services/bike.service';
 import { ShoppingCartService } from './_services/shopping-cart.service';
 import { CartComponent } from './cart/cart.component';
 import { TicketsComponent, TicketDialogComponent } from './tickets/tickets.component';
+import { HasRoleDirective } from './_directives/has-role.directive';
+import { FileUploadModule } from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +43,8 @@ import { TicketsComponent, TicketDialogComponent } from './tickets/tickets.compo
     DialogCalendarComponent,
     CartComponent,
     TicketsComponent,
-    TicketDialogComponent
+    TicketDialogComponent,
+    HasRoleDirective
 
   ],
   imports: [
@@ -57,8 +61,8 @@ import { TicketsComponent, TicketDialogComponent } from './tickets/tickets.compo
     NgbPaginationModule,
     NgbAlertModule,
     NgbDatepickerModule,
-    ReactiveFormsModule
-
+    ReactiveFormsModule,
+    FileUploadModule
   ],
   entryComponents: [DialogComponent, DialogShowComponent, DialogCalendarComponent, TicketDialogComponent],
   providers: [

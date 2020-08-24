@@ -3,3 +3,19 @@
 margin-left: 120px;
 position: relative;
 }
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 10
+  }
+  .newBike{
+      width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+  }
+  

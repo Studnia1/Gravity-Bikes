@@ -46,8 +46,10 @@ namespace GravityBikes.Data
 
         public async Task<IEnumerable<Bike>> GetBikes()
         {
-            var bikes = await _context.Bikes.ToListAsync();
-            return bikes;
+            //var groupedBikes = await _context.Bikes.GroupBy(x => x.BikeModel).ToDictionaryAsync(x => x.Key, x => x);
+            //var bikes = groupedBikes.GroupBy(z => z.Key).Select(x => x.Values.First()).ToList();
+            var results = _context.Bikes.DistinctBy(x => x.BikeModel).ToList();
+            return results;
         }
 
         public async Task<Bike> NewBike(Bike bike)
@@ -56,5 +58,6 @@ namespace GravityBikes.Data
             await _context.SaveChangesAsync();
             return bike;
         }
-    }
+
+
 }

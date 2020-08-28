@@ -3,12 +3,11 @@
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>{{bike.bikeModel}}</mat-card-title>
-      <mat-card-subtitle>{{BikeTypes[bike.bikeType]}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="/assets/images/bike1.png"background-register    alt="rowerek">
+    <img mat-card-image src="{{bike.url}}"background-register    alt="rowerek">
     <mat-card-content>
       <p>
-            tu bedzie opis byczku
+        {{bike.description}}
       </p>
     </mat-card-content>
     <mat-card-actions>

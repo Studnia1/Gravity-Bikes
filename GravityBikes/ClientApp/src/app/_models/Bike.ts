@@ -1,12 +1,12 @@
 export interface Bike {
     bikeId: number;
     bikePrice: number;
-    bikeIsAvaible: boolean;
     bikeModel: string;
     bikeSize: BikeSizes;
     bikeGender: BikeGenders;
     bikeType: BikeTypes;
-    photoUrl: string;
+    url: string;
+    description: string;
 
 
 }

@@ -65,7 +65,7 @@ namespace GravityBikes.Controllers
         [HttpPost("newbike")]
         public async Task<IActionResult> AddNewBike([FromForm]BikeForCreationDto bikeForCreationDto)
         {
-            var file = bikeForCreationDto.File;
+            var file = bikeForCreationDto.file;
             var uploadResult = new ImageUploadResult();
 
             if (file.Length > 0)
@@ -88,7 +88,7 @@ namespace GravityBikes.Controllers
 
             if (bikeForCreationDto.sCount > 0) 
             {
-                for (int i = 0; i <= bikeForCreationDto.sCount; i++)
+                for (int i = 1; i <= bikeForCreationDto.sCount; i++)
                 {
                     var smallBikeToCreate = new Bike
                     {
@@ -111,7 +111,7 @@ namespace GravityBikes.Controllers
             }
             if (bikeForCreationDto.mCount > 0)
             {
-                for (int i = 0; i <= bikeForCreationDto.mCount; i++)
+                for (int i = 1; i <= bikeForCreationDto.mCount; i++)
                 {
                     var mediumBikeToCreate = new Bike
                     {
@@ -133,7 +133,7 @@ namespace GravityBikes.Controllers
             }
             if (bikeForCreationDto.lCount > 0)
             {
-                for (int i = 0; i <= bikeForCreationDto.lCount; i++)
+                for (int i = 1; i <= bikeForCreationDto.lCount; i++)
                 {
                     var largeBikeToCreate = new Bike
                     {
@@ -155,7 +155,7 @@ namespace GravityBikes.Controllers
             }
             if (bikeForCreationDto.xlCount > 0)
             {
-                for (int i = 0; i <= bikeForCreationDto.xlCount; i++)
+                for (int i = 1; i <= bikeForCreationDto.xlCount; i++)
                 {
                     var xLargeBikeToCreate = new Bike
                     {

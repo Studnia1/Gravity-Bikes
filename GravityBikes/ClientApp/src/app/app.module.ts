@@ -26,7 +26,7 @@ import { ShoppingCartService } from './_services/shopping-cart.service';
 import { CartComponent } from './cart/cart.component';
 import { TicketsComponent, TicketDialogComponent } from './tickets/tickets.component';
 import { HasRoleDirective } from './_directives/has-role.directive';
-import { FileUploadModule } from 'ng2-file-upload';
+import { AngularFileUploaderModule } from 'angular-file-uploader';
 
 @NgModule({
   declarations: [
@@ -62,7 +62,7 @@ import { FileUploadModule } from 'ng2-file-upload';
     NgbAlertModule,
     NgbDatepickerModule,
     ReactiveFormsModule,
-    FileUploadModule
+    AngularFileUploaderModule
   ],
   entryComponents: [DialogComponent, DialogShowComponent, DialogCalendarComponent, TicketDialogComponent],
   providers: [
